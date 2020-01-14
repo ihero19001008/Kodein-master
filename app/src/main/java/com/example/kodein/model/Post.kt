@@ -5,19 +5,27 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class Post(
+ class Post
+{
     @field:PrimaryKey
     @SerializedName("id")
-    var id: Int,
+    var id: Int= 0
     @SerializedName("url")
-    var url: String,
+    var url: String=""
     @SerializedName("large_url")
-    var large_url: String,
+    var large_url: String=""
+        get() = this.url
+
     @SerializedName("source_id")
-    var source_id: Any,
+    var source_id: String=""
+        get() ="1"
     @SerializedName("site")
-    var site:String,
+     var site: String=""
+        get() = "1"
     @SerializedName("copyright")
-    var copyright: String
-)
+    var copyright: String =""
+        get() = "1"
+
+
+}
 
