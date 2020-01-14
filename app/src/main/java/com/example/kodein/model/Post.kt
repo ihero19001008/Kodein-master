@@ -25,7 +25,5 @@ import com.google.gson.annotations.SerializedName
     @SerializedName("copyright")
     var copyright: String =""
         get() = "1"
-
-
 }
 
