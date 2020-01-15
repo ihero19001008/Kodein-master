@@ -15,8 +15,10 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 class PostListViewModel(private val postDao: PostDao): BaseViewModel(){
+//    @Inject
+//    lateinit var retrofit: Retrofit
     @Inject
-    lateinit var retrofit: Retrofit
+    lateinit var postApi: PostApi
     val postListAdapter: PostListAdapter = PostListAdapter()
     private lateinit var subscription: Disposable
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
@@ -31,7 +33,7 @@ class PostListViewModel(private val postDao: PostDao): BaseViewModel(){
             .concatMap {
                     dbPostList ->
                 if(dbPostList.isEmpty()) {
-                    retrofit.create(PostApi::class.java).getPosts().concatMap { apiPostList ->
+                    postApi.getPosts().concatMap { apiPostList ->
                             postDao.insertAll(*apiPostList.getList.toTypedArray())
                             Observable.just(apiPostList.getList)
                     }
